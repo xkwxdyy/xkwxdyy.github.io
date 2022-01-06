@@ -4,45 +4,13 @@
   
   
   <entry>
-    <title>try to write</title>
-    <link href="/2022/01/06/try-to-write/"/>
-    <url>/2022/01/06/try-to-write/</url>
-    
-    <content type="html"><![CDATA[<p>写点什么吧？</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>中文测试标题</title>
-    <link href="/2022/01/06/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/"/>
-    <url>/2022/01/06/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/</url>
-    
-    <content type="html"><![CDATA[<p>中文测试</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>test</title>
+    <title>测试一波</title>
     <link href="/2022/01/06/test/"/>
     <url>/2022/01/06/test/</url>
     
-    <content type="html"><![CDATA[<p>测试</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="这是啥"><a href="#这是啥" class="headerlink" title="这是啥"></a>这是啥</h2><p>这是博客测试</p><h2 id="要测试什么"><a href="#要测试什么" class="headerlink" title="要测试什么"></a>要测试什么</h2><p><strong>加粗</strong> <em>斜体</em> <u>下划线</u> 公式 <code>LaTeX</code>  <code>\usepackage&#123;choices&#125;</code> </p><figure class="highlight plaintext"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs late">\documentclass&#123;ctexart&#125;<br><br>\begin&#123;document&#125;<br>你好，夏大鱼羊！<br>\end&#123;document&#125;<br></code></pre></td></tr></table></figure><p>我的<a href="https://github.com/xkwxdyy/">github</a></p>]]></content>
     
     
-    
-    <tags>
-      
-      <tag>LaTeX</tag>
-      
-    </tags>
     
   </entry>
   
