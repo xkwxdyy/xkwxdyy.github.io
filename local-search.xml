@@ -23,27 +23,6 @@
   
   
   <entry>
-    <title>测试一波</title>
-    <link href="/2022/01/06/test/"/>
-    <url>/2022/01/06/test/</url>
-    
-    <content type="html"><![CDATA[<h2 id="这是啥"><a href="#这是啥" class="headerlink" title="这是啥"></a>这是啥</h2><p>这是博客测试</p><h2 id="要测试什么"><a href="#要测试什么" class="headerlink" title="要测试什么"></a>要测试什么</h2><p><strong>加粗</strong> <em>斜体</em> <u>下划线</u> 公式 <code>LaTeX</code>  <code>\usepackage&#123;choices&#125;</code> </p><!-- more --><p>以下的内容不会出现在摘要中</p><figure class="highlight plaintext"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs late">\documentclass&#123;ctexart&#125;<br><br>\begin&#123;document&#125;<br>你好，夏大鱼羊！<br>\end&#123;document&#125;<br></code></pre></td></tr></table></figure><p>我的<a href="https://github.com/xkwxdyy/">github</a> (链接测试)</p><p><img src="/img/default.jpg"></p><p>（图片测试）</p><div class="note note-info">            <p>这是一段便签</p>          </div><p>便签的类型：</p><ul><li>primary</li><li>secondary</li><li>success</li><li>danger</li><li>warning</li><li>info</li><li>light</li></ul><p>标签：<span class="label label-primary">测试</span></p><p>标签的类型：</p><ul><li>primary</li><li>default</li><li>info</li><li>success</li><li>warning</li><li>danger</li></ul><p>勾选框(checkbox)：</p><div>            <input type="checkbox" disabled >          </div>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>github</tag>
-      
-      <tag>Fluid</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Hello World</title>
     <link href="/2022/01/06/hello-world/"/>
     <url>/2022/01/06/hello-world/</url>
