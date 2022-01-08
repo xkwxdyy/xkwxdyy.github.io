@@ -4,11 +4,30 @@
   
   
   <entry>
+    <title>Hexo与Fluid常用设置汇总</title>
+    <link href="/2022/01/08/hexo-learning/"/>
+    <url>/2022/01/08/hexo-learning/</url>
+    
+    <content type="html"><![CDATA[<h3 id="社交页图标">社交页图标</h3><p>在<strong>主题配置</strong>中设置：</p><figure class="highlight yaml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">about:</span><br>  <span class="hljs-attr">icons:</span><br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&#x27;iconfont icon-github-fill&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://github.com&#x27;</span>, <span class="hljs-attr">tip:</span> <span class="hljs-string">&#x27;GitHub&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&#x27;iconfont icon-douban-fill&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://douban.com&#x27;</span>, <span class="hljs-attr">tip:</span> <span class="hljs-string">&#x27;豆瓣&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&#x27;iconfont icon-wechat-fill&#x27;</span>, <span class="hljs-attr">qrcode:</span> <span class="hljs-string">&#x27;/img/favicon.png&#x27;</span> &#125;<br></code></pre></td></tr></table></figure><ul><li><code>class</code>: 图标的 css class，主题内置图标详见<a href="https://hexo.fluid-dev.com/docs/icon/">这里</a></li><li><code>link</code>: 跳转链接</li><li><code>tip</code>: 鼠标悬浮在图标上显示的提示文字</li><li><code>qrcode</code>: 二维码图片，当使用此字段后，点击不再跳转，而是悬浮二维码</li></ul><h5 id="参考">参考</h5><ul><li><p><a href="https://hexo.fluid-dev.com/docs/guide/">Fluid配置指南</a></p></li><li><p><a href="https://hexo.io/zh-cn/docs/front-matter">Front-matter</a></p></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Markdown 语法学习</title>
     <link href="/2022/01/08/markdown-learning/"/>
     <url>/2022/01/08/markdown-learning/</url>
     
-    <content type="html"><![CDATA[<h2 id="参考"><a href="#参考" class="headerlink" title="## 参考"></a>## 参考</h2><ul><li>语法基础篇：<a href="https://kiyanyang.github.io/posts/78e09c9c/">https://kiyanyang.github.io/posts/78e09c9c/</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="参考">## 参考</h2><ul><li>语法基础篇：<a href="https://kiyanyang.github.io/posts/78e09c9c/" class="uri">https://kiyanyang.github.io/posts/78e09c9c/</a></li></ul>]]></content>
     
     
     
@@ -27,7 +46,7 @@
     <link href="/2022/01/06/hello-world/"/>
     <url>/2022/01/06/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
     
     
     
