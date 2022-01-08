@@ -23,13 +23,19 @@
   
   
   <entry>
-    <title>LaTeX3-learning</title>
+    <title>LaTeX3个人学习经验</title>
     <link href="/2022/01/08/LaTeX3-learning/"/>
     <url>/2022/01/08/LaTeX3-learning/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>我在很久之前自己写过一个LaTeX3学习个人经验，整理了自己学习过程中的学习资料，并写了一些学习心得，只分享给了两位老师，一个原因是这两个老师当时就想学习LaTeX3，第二个原因是时间有点匆忙，我的文字叙述并不流畅和简洁（虽然口语化容易读懂，但是感觉写成书面文章还是需要适当的言简意赅）</p><p>后来[郭李军学弟]<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="郭李军博客：https://ljguo1020.github.io/">[1]</span></a></sup>在LaTeX工作室发了一个<a href="https://www.latexstudio.net/index/details/index/mid/2280">LaTeX3学习资料</a> ，我发现整理的和我差不多，但是多了两三个（然后我马上就码住了hhh）。其实现在市面上能找到的LaTeX3资料其实还是有不少的，对于LaTeX3入门应该是足够的，但是如果想要LaTeX3能更深入地学习下去（比如学习<code>interface3.pdf</code>介绍的一些LaTeX2e中不常见（对于一般用户来说比较少用）的模块，如regex、prg、msg、file等等）现在已有的资料某种意义上是不够的。</p><p>但是其实已经有很多优秀的宏包文类是用LaTeX3编写的，比如<code>ctex</code>宏集,<code>tabularray.sty</code>,<code>fduthesis.cls</code>等，但是这些都是一些大佬编写，本身并不是为了告诉你怎么使用LaTeX3而编写的，所以读起来会有一定难度，但是如果细品的话能够发现里面有很多细节和变量函数的使用是值得我们学习的，所以需要一个“引路人”能够带我们读懂这些代码，或是分析一些其中的细节。</p><p>而我的博客想做的主要就是这个事，我的代码水平其实非常的一般，但是我想把我能读懂的，我的一些体会分享出来，大家一起讨论学习，这样对我来说也是有很大的提高。</p><p>目前关于LaTeX3想做的主要但不限于下面几个：</p><ul><li>分析一些LaTeX3实例，LaTeX3应用的代码</li><li>讲述、记录或分析我自己用LaTeX3写命令的想法和思路（也能够帮助我进一步优化）</li><li>一些LaTeX3的常用方法和技巧</li></ul><h2 id="个人推荐的latex3学习顺序">个人推荐的LaTeX3学习顺序</h2><h3 id="了解背景和latex3基础">了解背景和LaTeX3基础</h3><h3 id="自己动手写小玩意">自己动手写小玩意</h3><h3 id="分析他人的作品应用">分析他人的作品、应用</h3><h2 id="参考">参考</h2><section class="footnotes"><h2>参考资料</h2><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>郭李军博客：https://ljguo1020.github.io/ <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span></li></ol></div></section>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>LaTeX3杂谈</tag>
+      
+    </tags>
     
   </entry>
   
@@ -65,7 +71,7 @@
     <link href="/2022/01/08/hexo-learning/"/>
     <url>/2022/01/08/hexo-learning/</url>
     
-    <content type="html"><![CDATA[<h3 id="社交页图标">社交页图标</h3><p>在<strong>主题配置</strong>中设置：</p><figure class="highlight yaml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">about:</span><br>  <span class="hljs-attr">icons:</span><br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&#x27;iconfont icon-github-fill&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://github.com&#x27;</span>, <span class="hljs-attr">tip:</span> <span class="hljs-string">&#x27;GitHub&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&#x27;iconfont icon-douban-fill&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://douban.com&#x27;</span>, <span class="hljs-attr">tip:</span> <span class="hljs-string">&#x27;豆瓣&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&#x27;iconfont icon-wechat-fill&#x27;</span>, <span class="hljs-attr">qrcode:</span> <span class="hljs-string">&#x27;/img/favicon.png&#x27;</span> &#125;<br></code></pre></td></tr></table></figure><ul><li><code>class</code>: 图标的 css class，主题内置图标详见<a href="https://hexo.fluid-dev.com/docs/icon/">这里</a></li><li><code>link</code>: 跳转链接</li><li><code>tip</code>: 鼠标悬浮在图标上显示的提示文字</li><li><code>qrcode</code>: 二维码图片，当使用此字段后，点击不再跳转，而是悬浮二维码</li></ul><h2 id="参考">参考</h2><ul><li><p><a href="https://hexo.fluid-dev.com/docs/guide/">Fluid配置指南</a></p></li><li><p><a href="https://hexo.io/zh-cn/docs/front-matter">Front-matter</a></p></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="社交页图标">社交页图标</h3><p>在<strong>主题配置</strong>中设置：</p><figure class="highlight yaml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">about:</span><br>  <span class="hljs-attr">icons:</span><br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&#x27;iconfont icon-github-fill&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://github.com&#x27;</span>, <span class="hljs-attr">tip:</span> <span class="hljs-string">&#x27;GitHub&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&#x27;iconfont icon-douban-fill&#x27;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&#x27;https://douban.com&#x27;</span>, <span class="hljs-attr">tip:</span> <span class="hljs-string">&#x27;豆瓣&#x27;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&#x27;iconfont icon-wechat-fill&#x27;</span>, <span class="hljs-attr">qrcode:</span> <span class="hljs-string">&#x27;/img/favicon.png&#x27;</span> &#125;<br></code></pre></td></tr></table></figure><ul><li><code>class</code>: 图标的 css class，主题内置图标详见<a href="https://hexo.fluid-dev.com/docs/icon/">这里</a></li><li><code>link</code>: 跳转链接</li><li><code>tip</code>: 鼠标悬浮在图标上显示的提示文字</li><li><code>qrcode</code>: 二维码图片，当使用此字段后，点击不再跳转，而是悬浮二维码</li></ul><h2 id="参考">参考</h2><ul><li><p><a href="https://hexo.fluid-dev.com/docs/guide/">Fluid配置指南</a></p></li><li><p><a href="https://hexo.io/zh-cn/docs/front-matter">Front-matter</a></p></li><li><p>博客的搭建步骤主要参考<a href="https://syvshc.github.io/2021-03-03-build-github-io/">乙醇写的文章</a></p></li></ul>]]></content>
     
     
     
