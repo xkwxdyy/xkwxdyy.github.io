@@ -4,6 +4,57 @@
   
   
   <entry>
+    <title>LaTeX-learning</title>
+    <link href="/2022/01/08/LaTeX-learning/"/>
+    <url>/2022/01/08/LaTeX-learning/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LaTeX3-learning</title>
+    <link href="/2022/01/08/LaTeX3-learning/"/>
+    <url>/2022/01/08/LaTeX3-learning/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>个人博客搭建规划</title>
+    <link href="/2022/01/08/blog-outline/"/>
+    <url>/2022/01/08/blog-outline/</url>
+    
+    <content type="html"><![CDATA[<p>这个博客主要用于输出与记录，特别是关于LaTeX的部分希望可以对于其他学习者有所帮助与启发。</p><h2 id="分类">分类</h2><ul><li>杂谈</li><li>LaTeX杂谈</li><li>数学杂谈</li><li>LaTeX3实例分析</li><li>LaTeX问题解决</li><li>LaTeX3应用</li><li>个人LaTeX作品</li></ul><h2 id="标签">标签</h2><ul><li>LaTeX</li><li>LaTeX3</li><li>问题解决</li><li>实例分析</li><li>杂谈</li><li>应用</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>杂谈</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hexo与Fluid常用设置汇总</title>
     <link href="/2022/01/08/hexo-learning/"/>
     <url>/2022/01/08/hexo-learning/</url>
@@ -15,6 +66,8 @@
     <tags>
       
       <tag>Hexo</tag>
+      
+      <tag>Fluid</tag>
       
     </tags>
     
