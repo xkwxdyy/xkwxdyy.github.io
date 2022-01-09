@@ -215,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      2k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9 分钟
+      17 分钟
     </span>
   
 
@@ -288,6 +288,25 @@
 <li><a target="_blank" rel="noopener" href="https://gitee.com/xkwxdyy/choices-l3/issues">Gitee issues</a></li>
 </ul>
 <hr />
+<h2 id="宏包设计和构想思路">宏包设计和构想思路</h2>
+<p>宏包的产生背景我其实在<code>choices_usrmanual.pdf</code>中解释过，在这里简要地再提一下：</p>
+<ul>
+<li>对于选择题的选项排版
+<ul>
+<li>已有的选项排版命令受限于参数的个数，比如四个参数的命令必须要有四个选项</li>
+<li>对于多选题，问卷的选项排版，选项个数不确定，如果要从1-9个参数都自定义命令那非常麻烦，而且如果按照传统的自定义命令方式最多有9个必选参数，如果有更多的排版需求，那么这些方法已经失效</li>
+<li>已有的命令无法切换label的样式</li>
+</ul></li>
+</ul>
+<p>基于上述的背景，我一开始基于<code>hlist</code>环境整合了一些功能，用LaTeX3的<code>seq</code>模块来切割选项，解决了参数个数问题，产生了<code>\choices</code>命令（本质是<code>\hlistchoice</code>命令）。</p>
+<p>但是<code>\choices</code>命令有一个小问题：label的位置非常局限，即使是上下偏移都无法通过<code>hlist</code>宏包本身来实现，而且还遇到一个问题：图片类型的选项排版。</p>
+<p>图片排版也是中学老师经常碰到的一种问题，我目前了解的情况来看，大部分都是通过表格来完成的，但是“使用表格”本身有一丢丢违背LaTeX的“内容与样式分离”的想法，因为我的目的还是为了排版选项，而不是表格。</p>
+<p>对于图片的排版，label通常情况下更多放置在图片的正上方或正下方。基于上述原因，我就需要开发另一种选项排版的命令<code>\choices*</code>（本质是<code>\coffinchoice</code>）可以方便地切换不同的anchor（借用了TikZ中的术语），满足不同需求。受耿楠教授的<a target="_blank" rel="noopener" href="https://gitee.com/nwafu_nan/hanzibox-l3"><code>hanzibox</code>宏包</a>启发，我决定使用LaTeX3的coffin来完成此命令的研发，最后在几天的调试下基本实现了想要的功能。</p>
+<h2 id="宏包代码优化">宏包代码优化</h2>
+<p>李泽平老师当时看了我的代码和我说，一个命令的代码不应该超过一个屏幕，所以我需要对代码进行优化。</p>
+<p>其实我最开始设计的时候就是想有优化的：也就是一些算法可以单独抽离出来成为单独的函数，其实很多成熟的宏包都是这么做的，但是我没这么弄过，没有任何经验，最开始弄的时候直接出bug，然后想着“先实现再完美”（因为我一直以来都有点完美主义，导致了不少的拖延hhh），现在功能基本实现，就尝试优化一下代码。</p>
+<h3 id="键值优化">键值优化</h3>
+<p>键值的有一定规范，比如使用<code>-</code>来分隔使得更容易阅读，比如<code>random-items</code>就是控制<code>items</code>的乱序。</p>
 
             </div>
             <hr>
