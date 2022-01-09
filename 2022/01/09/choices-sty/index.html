@@ -16,22 +16,41 @@
   <meta name="author" content="Kangwei Xia">
   <meta name="keywords" content="LaTeX 数学 羽毛球">
   
-    <meta name="description" content="A LaTeX and math learner.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="夏大鱼羊">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="主要分析一下编写思路以及思考如何进一步优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个人作品分析：&#96;choices&#96;宏包">
+<meta property="og:url" content="http://example.com/2022/01/09/choices-sty/index.html">
 <meta property="og:site_name" content="夏大鱼羊">
-<meta property="og:description" content="A LaTeX and math learner.">
+<meta property="og:description" content="主要分析一下编写思路以及思考如何进一步优化">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-09T02:10:03.000Z">
+<meta property="article:modified_time" content="2022-01-09T02:10:03.000Z">
 <meta property="article:author" content="Kangwei Xia">
-<meta property="article:tag" content="LaTeX 数学 羽毛球">
+<meta property="article:tag" content="LaTeX3">
+<meta property="article:tag" content="实例分析">
+<meta property="article:tag" content="宏包">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>夏大鱼羊</title>
+  <title>个人作品分析：`choices`宏包 - 夏大鱼羊</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -62,7 +81,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -175,17 +194,55 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="你不需要很厉害才能开始，但你需要开始才能很厉害">
+            <span class="h2" id="subtitle" title="个人作品分析：`choices`宏包">
               
             </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-09 10:10" pubdate>
+        2022年1月9日上午10点10分
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -194,334 +251,127 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">个人作品分析：`choices`宏包</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年1月9日上午10点10分
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="宏包介绍">宏包介绍</h2>
+<h3 id="宏包基本情况">宏包基本情况</h3>
+<p>Package: LaTeX package for flexibly LaTeXing choice items based on hlist and LaTeX3.</p>
+<p>Repository: <a target="_blank" rel="noopener" href="https://github.com/xkwxdyy/choices-l3">Github仓库</a></p>
+<p>Repository: <a target="_blank" rel="noopener" href="https://gitee.com/xkwxdyy/choices-l3">Gitee仓库</a></p>
+<p>Author: Kangwei Xia <a href="kangweixia_xdyy@163.com">E-mail</a></p>
+<h3 id="宏包说明">宏包说明</h3>
+<p><code>choices</code>宏包是一个用于排版选项的宏包, 包含但不限于以下特点： - 可以排版任意数量的选项 - 可以方便切换标签风格<code>label-style</code> - 可以更改标签<code>label</code>与内容的相对位置 - 可以调整标签<code>label</code>的偏移 - 自动识别是否使用 <code>includegraphics</code> 命令并自行调整 <code>anchor</code> 的位置（仅 <code>choices*</code> 有此功能, 之所以会有 <code>choices*</code> 命令, 就是因为基于 <code>hlist</code> 环境的 <code>choices</code> 只有一个方位, 无法更改, 所以需要用另外的方法处理（ <code>choices*</code> 是用 <code>coffin</code> 进行处理））. <strong>此功能的实现需要将 <code>expl3</code> 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用且会报错.</strong></p>
+<p>在需要排版选项的情况中（比如试卷、问卷排版等）<code>choices</code>宏包可以发挥重要作用, 旨在让用户更多关注在内容本身, 契合LaTeX的内容与样式分离的思想.</p>
+<p><code>choices</code>宏包是基于<code>hlist</code>环境与LaTeX3开发的LaTeX宏包, 它提供了<code>choices(*)</code> 两个主命令与<code>coffinchoice</code>、<code>hlistchoice</code>和<code>quan</code>三个副命令. <code>choices</code>和<code>choices*</code>是利用了<code>xparse</code>宏包对<code>hlistchoice</code>与<code>coffinchoice</code>命令进行封装. 其中<code>choices</code>等效于<code>hlistchoice</code>, <code>choices*</code>等效于<code>coffinchoice</code>.</p>
+<p>通常情况下使用 <code>choices</code> 命令就够了, 但是用户如果有排版图片的需求, 可能需要将 <code>label</code> 置于内容的上方或下方, 而 <code>choices</code> 命令基于 <code>hlist</code> 环境编写, 所以<code>label</code> 只能置于内容的左侧, 这个时候只需要使用<code>choices*</code>, 会自动更改<code>anchor</code>为<code>south</code>, 如果需要修改自动的<code>anchor</code>为其它的方位可以使用<code>\choicesetup&#123;autopic = north&#125;</code> .</p>
+<p>更多宏包细节与命令欢迎阅读宏包手册<code>choices_usrmanual.pdf</code>（用xelatex编译<code>choices_usrmanual.tex</code>即可）</p>
+<h3 id="如果使用过程中发现了issue或者有什么建议-欢迎提出">如果使用过程中发现了issue或者有什么建议, 欢迎提出</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/xkwxdyy/choices-l3/issues">Github issues</a></li>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/xkwxdyy/choices-l3/issues">Gitee issues</a></li>
+</ul>
+<hr />
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E5%93%81/">个人作品</a>
+                    
+                      <a class="hover-with-bg" href="/categories/LaTeX3%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90/">LaTeX3实例分析</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/LaTeX3/">LaTeX3</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90/">实例分析</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AE%8F%E5%8C%85/">宏包</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/08/LaTeX-learning/">
+                        <span class="hidden-mobile">我的LaTeX学习历程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
                 
 
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/09/choices-sty/" target="_self">
-          个人作品分析：`choices`宏包
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/09/choices-sty/" target="_self">
-          
-          主要分析一下编写思路以及思考如何进一步优化
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-09 10:10" pubdate>
-              2022-01-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
+              </article>
             
-              <a href="/categories/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E5%93%81/">个人作品</a>
-            
-              <a href="/categories/LaTeX3%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90/">LaTeX3实例分析</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/LaTeX3/">LaTeX3</a>
-            
-              <a href="/tags/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90/">实例分析</a>
-            
-              <a href="/tags/%E5%AE%8F%E5%8C%85/">宏包</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/08/LaTeX-learning/" target="_self">
-          我的LaTeX学习历程
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/08/LaTeX-learning/" target="_self">
-          
-          主要介绍个人的LaTeX学习的几个阶段。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-08 21:22" pubdate>
-              2022-01-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/LaTeX%E6%9D%82%E8%B0%88/">LaTeX杂谈</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/LaTeX%E6%9D%82%E8%B0%88/">LaTeX杂谈</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/08/LaTeX3-learning/" target="_self">
-          LaTeX3个人学习经验
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/08/LaTeX3-learning/" target="_self">
-          
-          本文主要介绍个人学习LaTeX3过程中的一些心得体会。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-08 21:22" pubdate>
-              2022-01-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/LaTeX3%E6%9D%82%E8%B0%88/">LaTeX3杂谈</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/LaTeX3%E6%9D%82%E8%B0%88/">LaTeX3杂谈</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/08/blog-outline/" target="_self">
-          个人博客搭建规划
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/08/blog-outline/" target="_self">
-          
-          主要介绍一下这个博客的整体方向以及分类和标签的大概内容
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-08 18:40" pubdate>
-              2022-01-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%9D%82%E8%B0%88/">杂谈</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/08/hexo-learning/" target="_self">
-          Hexo与Fluid常用设置汇总
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/08/hexo-learning/" target="_self">
-          
-          从官网指南上选取的部分设置，方便个人需要的时候查找
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-08 10:39" pubdate>
-              2022-01-08
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Hexo/">Hexo</a>
-            
-              <a href="/tags/Fluid/">Fluid</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/08/markdown-learning/" target="_self">
-          Markdown 语法学习
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/08/markdown-learning/" target="_self">
-          
-          记录Markdown的常见语法
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-08 00:00" pubdate>
-              2022-01-08
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/markdown/">markdown</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/06/hello-world/" target="_self">
-          Hello World
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/06/hello-world/" target="_self">
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-06 10:53" pubdate>
-              2022-01-06
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
-
-
-
-              </div>
-            </div>
-          </div>
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -628,6 +478,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 

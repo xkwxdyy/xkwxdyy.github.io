@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>个人作品分析：`choices`宏包</title>
+    <link href="/2022/01/09/choices-sty/"/>
+    <url>/2022/01/09/choices-sty/</url>
+    
+    <content type="html"><![CDATA[<h2 id="宏包介绍">宏包介绍</h2><h3 id="宏包基本情况">宏包基本情况</h3><p>Package: LaTeX package for flexibly LaTeXing choice items based on hlist and LaTeX3.</p><p>Repository: <a href="https://github.com/xkwxdyy/choices-l3">Github仓库</a></p><p>Repository: <a href="https://gitee.com/xkwxdyy/choices-l3">Gitee仓库</a></p><p>Author: Kangwei Xia <a href="kangweixia_xdyy@163.com">E-mail</a></p><h3 id="宏包说明">宏包说明</h3><p><code>choices</code>宏包是一个用于排版选项的宏包, 包含但不限于以下特点： - 可以排版任意数量的选项 - 可以方便切换标签风格<code>label-style</code> - 可以更改标签<code>label</code>与内容的相对位置 - 可以调整标签<code>label</code>的偏移 - 自动识别是否使用 <code>includegraphics</code> 命令并自行调整 <code>anchor</code> 的位置（仅 <code>choices*</code> 有此功能, 之所以会有 <code>choices*</code> 命令, 就是因为基于 <code>hlist</code> 环境的 <code>choices</code> 只有一个方位, 无法更改, 所以需要用另外的方法处理（ <code>choices*</code> 是用 <code>coffin</code> 进行处理））. <strong>此功能的实现需要将 <code>expl3</code> 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用且会报错.</strong></p><p>在需要排版选项的情况中（比如试卷、问卷排版等）<code>choices</code>宏包可以发挥重要作用, 旨在让用户更多关注在内容本身, 契合LaTeX的内容与样式分离的思想.</p><p><code>choices</code>宏包是基于<code>hlist</code>环境与LaTeX3开发的LaTeX宏包, 它提供了<code>choices(*)</code> 两个主命令与<code>coffinchoice</code>、<code>hlistchoice</code>和<code>quan</code>三个副命令. <code>choices</code>和<code>choices*</code>是利用了<code>xparse</code>宏包对<code>hlistchoice</code>与<code>coffinchoice</code>命令进行封装. 其中<code>choices</code>等效于<code>hlistchoice</code>, <code>choices*</code>等效于<code>coffinchoice</code>.</p><p>通常情况下使用 <code>choices</code> 命令就够了, 但是用户如果有排版图片的需求, 可能需要将 <code>label</code> 置于内容的上方或下方, 而 <code>choices</code> 命令基于 <code>hlist</code> 环境编写, 所以<code>label</code> 只能置于内容的左侧, 这个时候只需要使用<code>choices*</code>, 会自动更改<code>anchor</code>为<code>south</code>, 如果需要修改自动的<code>anchor</code>为其它的方位可以使用<code>\choicesetup&#123;autopic = north&#125;</code> .</p><p>更多宏包细节与命令欢迎阅读宏包手册<code>choices_usrmanual.pdf</code>（用xelatex编译<code>choices_usrmanual.tex</code>即可）</p><h3 id="如果使用过程中发现了issue或者有什么建议-欢迎提出">如果使用过程中发现了issue或者有什么建议, 欢迎提出</h3><ul><li><a href="https://github.com/xkwxdyy/choices-l3/issues">Github issues</a></li><li><a href="https://gitee.com/xkwxdyy/choices-l3/issues">Gitee issues</a></li></ul><hr />]]></content>
+    
+    
+    <categories>
+      
+      <category>个人作品</category>
+      
+      <category>LaTeX3实例分析</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LaTeX3</tag>
+      
+      <tag>实例分析</tag>
+      
+      <tag>宏包</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>我的LaTeX学习历程</title>
     <link href="/2022/01/08/LaTeX-learning/"/>
     <url>/2022/01/08/LaTeX-learning/</url>
@@ -58,7 +89,7 @@
     <link href="/2022/01/08/blog-outline/"/>
     <url>/2022/01/08/blog-outline/</url>
     
-    <content type="html"><![CDATA[<p>这个博客主要用于输出与记录，特别是关于LaTeX的部分希望可以对于其他学习者有所帮助与启发。</p><p>目前想到的分类和标签有以下这几个，会不断补充与完善：</p><h2 id="分类">分类</h2><ul><li>杂谈</li><li>LaTeX杂谈</li><li>数学杂谈</li><li>LaTeX3实例分析</li><li>LaTeX问题解决</li><li>LaTeX3应用</li><li>个人LaTeX作品</li></ul><h2 id="标签">标签</h2><ul><li>LaTeX</li><li>LaTeX3</li><li>问题解决</li><li>实例分析</li><li>杂谈</li><li>应用</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>这个博客主要用于输出与记录，特别是关于LaTeX的部分希望可以对于其他学习者有所帮助与启发。</p><p>目前想到的分类和标签有以下这几个，会不断补充与完善：</p><h2 id="分类">分类</h2><ul><li>杂谈</li><li>LaTeX杂谈</li><li>数学杂谈</li><li>LaTeX3实例分析</li><li>LaTeX问题解决</li><li>LaTeX3应用</li><li>个人作品</li></ul><h2 id="标签">标签</h2><ul><li>LaTeX</li><li>LaTeX3</li><li>问题解决</li><li>实例分析</li><li>杂谈</li><li>应用</li><li>宏包</li></ul>]]></content>
     
     
     <categories>
@@ -104,7 +135,7 @@
     <link href="/2022/01/08/markdown-learning/"/>
     <url>/2022/01/08/markdown-learning/</url>
     
-    <content type="html"><![CDATA[<h2 id="参考">## 参考</h2><ul><li>语法基础篇：<a href="https://kiyanyang.github.io/posts/78e09c9c/" class="uri">https://kiyanyang.github.io/posts/78e09c9c/</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="参考">参考</h2><ul><li>语法基础篇：<a href="https://kiyanyang.github.io/posts/78e09c9c/" class="uri">https://kiyanyang.github.io/posts/78e09c9c/</a></li></ul>]]></content>
     
     
     
