@@ -18,7 +18,7 @@
   
     <meta name="description" content="主要分析一下编写思路以及思考如何进一步优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="个人作品分析：&#96;choices&#96;宏包">
+<meta property="og:title" content="个人作品分析：choices宏包">
 <meta property="og:url" content="http://example.com/2022/01/09/choices-sty/index.html">
 <meta property="og:site_name" content="夏大鱼羊">
 <meta property="og:description" content="主要分析一下编写思路以及思考如何进一步优化">
@@ -32,7 +32,7 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>个人作品分析：`choices`宏包 - 夏大鱼羊</title>
+  <title>个人作品分析：choices宏包 - 夏大鱼羊</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -194,7 +194,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="个人作品分析：`choices`宏包">
+            <span class="h2" id="subtitle" title="个人作品分析：choices宏包">
               
             </span>
 
@@ -261,7 +261,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">个人作品分析：`choices`宏包</h1>
+            <h1 style="display: none">个人作品分析：choices宏包</h1>
             
               <p class="note note-info">
                 
@@ -275,7 +275,7 @@
 <p>Package: LaTeX package for flexibly LaTeXing choice items based on hlist and LaTeX3.</p>
 <p>Repository: <a target="_blank" rel="noopener" href="https://github.com/xkwxdyy/choices-l3">Github仓库</a></p>
 <p>Repository: <a target="_blank" rel="noopener" href="https://gitee.com/xkwxdyy/choices-l3">Gitee仓库</a></p>
-<p>Author: Kangwei Xia <a href="kangweixia_xdyy@163.com">E-mail</a></p>
+<p>Author: Kangwei Xia <a href="mailto:kangweixia_xdyy@163.com">E-mail</a></p>
 <h3 id="宏包说明">宏包说明</h3>
 <p><code>choices</code>宏包是一个用于排版选项的宏包, 包含但不限于以下特点： - 可以排版任意数量的选项 - 可以方便切换标签风格<code>label-style</code> - 可以更改标签<code>label</code>与内容的相对位置 - 可以调整标签<code>label</code>的偏移 - 自动识别是否使用 <code>includegraphics</code> 命令并自行调整 <code>anchor</code> 的位置（仅 <code>choices*</code> 有此功能, 之所以会有 <code>choices*</code> 命令, 就是因为基于 <code>hlist</code> 环境的 <code>choices</code> 只有一个方位, 无法更改, 所以需要用另外的方法处理（ <code>choices*</code> 是用 <code>coffin</code> 进行处理））. <strong>此功能的实现需要将 <code>expl3</code> 宏包更新至最新（至少是2021-11-12后）, 否则可能无法使用且会报错.</strong></p>
 <p>在需要排版选项的情况中（比如试卷、问卷排版等）<code>choices</code>宏包可以发挥重要作用, 旨在让用户更多关注在内容本身, 契合LaTeX的内容与样式分离的思想.</p>
