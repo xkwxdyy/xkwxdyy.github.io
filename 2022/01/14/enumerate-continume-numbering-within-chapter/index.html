@@ -1,0 +1,582 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/xdyylogo-real.png">
+  <link rel="icon" href="/img/xdyylogo-real.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kangwei Xia">
+  <meta name="keywords" content="LaTeX 数学 羽毛球">
+  
+    <meta name="description" content="实现了chapter内的enumerate环境可以连续编号并且enumi计数器在新的chapter会自动清零的效果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现chapter内多个enumerate环境连续编号并在新chapter重置">
+<meta property="og:url" content="http://example.com/2022/01/14/enumerate-continume-numbering-within-chapter/index.html">
+<meta property="og:site_name" content="夏大鱼羊">
+<meta property="og:description" content="实现了chapter内的enumerate环境可以连续编号并且enumi计数器在新的chapter会自动清零的效果">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/Users/xiakangwei/Nutstore/Github/xdyyblog/source/blogimage/enumerate-continume-numbering-within-chapter-MWE1.png">
+<meta property="og:image" content="http://example.com/Users/xiakangwei/Nutstore/Github/xdyyblog/source/blogimage/enumerate-continume-numbering-within-chapter-MWE2.png">
+<meta property="article:published_time" content="2022-01-14T13:28:52.000Z">
+<meta property="article:modified_time" content="2022-01-14T13:28:52.000Z">
+<meta property="article:author" content="Kangwei Xia">
+<meta property="article:tag" content="LaTeX">
+<meta property="article:tag" content="问题解决">
+<meta property="article:tag" content="enumerate">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/Users/xiakangwei/Nutstore/Github/xdyyblog/source/blogimage/enumerate-continume-numbering-within-chapter-MWE1.png">
+  
+  
+  <title>实现chapter内多个enumerate环境连续编号并在新chapter重置 - 夏大鱼羊</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>夏大鱼羊</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于作者
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/xdyylogo-image.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="实现chapter内多个enumerate环境连续编号并在新chapter重置">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-14 21:28" pubdate>
+        2022年1月14日晚上9点28分
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">实现chapter内多个enumerate环境连续编号并在新chapter重置</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年1月14日晚上9点28分
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="问题阐述">问题阐述</h2>
+<p>昨天群内万宏伟老师提出了一个需求：想要enumerate具有以下功能：</p>
+<ol type="1">
+<li>一个chapter内的不同的enumerate环境可以连续编号</li>
+<li>在新的chapter的开始，enumerate环境会重置计数器</li>
+</ol>
+<p>起因是他想一个chapter是一份试卷，每一份试卷都是从1开始编号，问题很容易理解</p>
+<p>群里有老师说要重设计数器，我个人并不想要这种做法，理由如下：</p>
+<ul>
+<li>重设计数器之后要怎么做？重新做一个list出来？</li>
+<li><code>enumitem</code>宏包对<code>enumerate</code>环境这么好的增幅效果，这么好的轮子就不能用了</li>
+</ul>
+<p>所以基本实现的想法是去修改<code>enumerate</code>环境的定义，具体实现如下：</p>
+<h2 id="实现的思路分析">实现的思路分析</h2>
+<h3 id="功能1的实现">功能1的实现</h3>
+<p>连续编号这个功能早在<code>enumitem</code>宏包的<code>resume</code>* 键（带星号的会继承<code>label</code>的样式，不带星号的只继承计数器的值，考虑到一半都会修改<code>label</code>，所以采用了带星的）就可以实现，但是喜欢偷懒的我不想要每次都要输入<code>resume*</code>，如果把<code>enumerate</code>改成自己本身自带<code>resume*</code>选项不就行了？</p>
+<p>但是直接<code>renew</code>的话，可是我们不知道enumerate本身咋定义的，难道还要去翻过来并且重新去弄list？那也太麻烦了，而且我们也不是改定义，只是想让</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs latex">\begin&#123;enumerate&#125;<br><br>\end&#123;enumerate&#125;<br></code></pre></td></tr></table></figure>
+<p>具有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex">\begin&#123;enumerate&#125;[resume*]<br><br>\end&#123;enumerate&#125;<br></code></pre></td></tr></table></figure>
+<p>的效果，这咋搞？</p>
+<p>我们重新看我们的需求，其实我们并不是要修改<code>enumerate</code>本身的定义，而是要在它之上加点东西而已。</p>
+<p>这个时候，我想到了以前看乙醇哥的一篇博客《<a target="_blank" rel="noopener" href="https://syvshc.github.io/2021-11-10-compute-total-items/">统计一节中的列表项数量</a>》里面有一个做法我印象深刻：复制副本，简单来说就是</p>
+<ol type="1">
+<li><p>先把命令<code>\foo</code>复制一个副本<code>\fooo</code>出来，也就是把定义放到一个新的命令里去，怎么定义的我不关心，我只知道我把它已经存起来了，随时可以被调用</p></li>
+<li><p>用<code>\def</code>修改原命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs latex">\def\foo&#123;<br>  % something you want to add<br>  \fooo<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>由于<code>\fooo</code>和<code>\foo</code>是等效的，所以就是我们在原来的基础上加了东西，这个做法有迭代的味道在里面，也有数学或物理里的“看作整体”想法在。</p></li>
+</ol>
+<p>但是这个地方我们是环境怎么办？那我们只需粗略但不严谨地知道，一般环境<code>foo</code>的定义其实是定义了两个宏<code>\foo</code>和<code>\endfoo</code>，那我分别储存这两个宏的副本就行。</p>
+<div class="note note-warning">
+            <p>PS： 虽然不属于本文的讨论范围，但是还是插一嘴，从上面的这个可以看出，其实传统方式定义<code>foo</code>环境的话其实定义了<code>\foo</code>命令，但是如果我想<code>newcommand</code>定义<code>\foo</code>的话就会报错冲突（不出意外是<code>already-defined</code>类型的），那如果我还是想要<code>\foo</code>和<code>foo</code>环境共存怎么办？这个时候要用<code>xparse</code>宏包的<code>\NewDocumentEnvironment</code>命令来定义环境了，这样就可以共存，详细请参看这篇文章：<a target="_blank" rel="noopener" href="https://www.texdev.net/2011/01/09/latex3-and-document-environments/">LaTeX3 and document environments</a></p><p>（所以说<code>xparse</code>宏包牛！这个宏包的一些定义命令的效果和方式真是颠覆我传统的想法，第一次看就惊呼牛皮）</p>
+          </div>
+<p>加上一点点小细节就变成了下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs latex">\ExplSyntaxOn<br>\makeatletter<br>% 储存副本代码<br>\let\@enumerate\enumerate<br>\let\@endenumerate\endenumerate<br>% 重定义enumerate环境<br>\RenewDocumentEnvironment&#123;enumerate&#125;&#123; O&#123;&#125; !b &#125;<br>  &#123;<br>  	% 因为chapter最开始的enumerate环境不需要resume<br>  	% 所以加一个LaTeX3的简单整数判断bool从句<br>    \int_compare:nNnTF &#123; \theenumi &#125; = &#123;0&#125;<br>      &#123; \@enumerate[#1] &#125;<br>      &#123; \@enumerate[resume*, #1] &#125;<br>      #2<br>  &#125;<br>  &#123;<br>    \@endenumerate<br>  &#125;<br>\makeatother<br>\ExplSyntaxOff<br></code></pre></td></tr></table></figure>
+<p>PS：<code>xparse</code>宏包的使用我在我的<a target="_blank" rel="noopener" href="https://xkwxdyy.github.io/2022/01/08/LaTeX3-learning/">LaTeX3个人学习经验</a>文章里也有呼吁大家去读文档学习，是我在见到<code>hlist</code>环境、TikZ、LaTeX3 后震惊的第四种代码（不经想到作者都是什么神仙怪物，怎么会发明出这么牛的命令）非常推荐大家学习</p>
+<p>功能1其实就已解决了，可以直接使用<code>enumerate</code>环境也获得<code>resume*</code>的效果而不用手动添加</p>
+<h3 id="功能2的实现">功能2的实现</h3>
+<p>代码其实很简单</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">\setcounter&#123;enumi&#125;&#123;0&#125;<br></code></pre></td></tr></table></figure>
+<p>然后我们的目的就转化为：如何在每个<code>\chapter</code>命令的时候自动加载这个代码？</p>
+<p>也就是能不能把这个代码嵌入<code>\chapter</code>命令里面？</p>
+<p>我们仿照功能1的思路就可以得到下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs latex">\let\ch@pter\chapter<br>\def\chapter&#123;<br>  \setcounter&#123;enumi&#125;&#123;0&#125;    % 注意这个要放在\ch@pter的前面<br>  												 % 放在后面会报错，我也不懂TeX，也不知道为啥<br>  \ch@pter<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="note note-danger">
+            <p>特别要注意的是<code>\@chapter</code>这个命令在LaTeX的源代码里就已经被定义了，所以用其它的副本名字就行。</p><p>（别问我怎么知道的... 我就恰巧不巧取了<code>\@chapter</code>，一开始就很纳闷为什么bug了，在乙醇哥的指点下注意到了这个</p>
+          </div>
+<p>还有一种方法就是用<code>etoolbox</code>宏包的hook命令<code>\pretocmd</code>，和上面一样只能用pre放在前面，而不能用<code>\apptocmd</code>放在后面，希望知道原因的大佬能留言告知下原因</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex">% \usepackage&#123;etoolbox&#125;<br>\pretocmd&#123;\chapter&#125;&#123;\setcounter&#123;enumi&#125;&#123;0&#125;&#125;&#123;&#125;&#123;&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="一个完整的mwe">一个完整的MWE</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs latex">\documentclass&#123;book&#125;<br>\usepackage&#123;enumitem&#125;<br>\usepackage&#123;etoolbox&#125;<br>\ExplSyntaxOn<br>\makeatletter<br>\let\@enumerate\enumerate<br>\let\@endenumerate\endenumerate<br><br>\RenewDocumentEnvironment&#123;enumerate&#125;&#123; O&#123;&#125; !b &#125;<br>  &#123;<br>    \int_compare:nNnTF &#123; \theenumi &#125; = &#123;0&#125;<br>      &#123; \@enumerate[#1] &#125;<br>      &#123; \@enumerate[resume*, #1] &#125;<br>      #2<br>  &#125;<br>  &#123;<br>    \@endenumerate<br>  &#125;<br><br>% 下面两种方法都行<br>% 第一种是用etoolbox的pretocmd<br>% \pretocmd&#123;\chapter&#125;&#123;\setcounter&#123;enumi&#125;&#123;0&#125;&#125;&#123;&#125;&#123;&#125;<br><br>% 第二种是copy一个副本出来重定义chapter<br>\let\ch@pter\chapter<br>\def\chapter&#123;<br>  \setcounter&#123;enumi&#125;&#123;0&#125;<br>  \ch@pter<br>&#125;<br>\makeatother<br>\ExplSyntaxOff<br><br><br>\begin&#123;document&#125;<br><br>\chapter&#123;1&#125;<br><br>\begin&#123;enumerate&#125;[label = \roman*.]<br>  \item 1<br>  \item 2<br>\end&#123;enumerate&#125;<br><br>\begin&#123;enumerate&#125;<br>  \item 3<br>  \item 4<br>\end&#123;enumerate&#125;<br><br><br>\chapter&#123;2&#125;<br><br>\begin&#123;enumerate&#125;<br>  \item 1<br>  \item 2<br>\end&#123;enumerate&#125;<br><br>\begin&#123;enumerate&#125;<br>  \item 3<br>  \item 4<br>  \item 5<br>\end&#123;enumerate&#125;<br><br>\end&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="/Users/xiakangwei/Nutstore/Github/xdyyblog/source/blogimage/enumerate-continume-numbering-within-chapter-MWE1.png" srcset="/img/loading.gif" lazyload alt="enumerate-continume-numbering-within-chapter-MWE1" /></div><div class="group-image-wrap"><img src="/Users/xiakangwei/Nutstore/Github/xdyyblog/source/blogimage/enumerate-continume-numbering-within-chapter-MWE2.png" srcset="/img/loading.gif" lazyload alt="enumerate-continume-numbering-within-chapter-MWE2" /></div></div></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/LaTeX/">LaTeX</a>
+                    
+                      <a class="hover-with-bg" href="/categories/LaTeX%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">LaTeX问题解决</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/LaTeX/">LaTeX</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a>
+                    
+                      <a class="hover-with-bg" href="/tags/enumerate/">enumerate</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/09/choices-sty/">
+                        <span class="hidden-mobile">个人作品分析：choices宏包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
