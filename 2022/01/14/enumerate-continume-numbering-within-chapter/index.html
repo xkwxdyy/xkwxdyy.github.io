@@ -218,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.3k 字
+      5.5k 字
     </span>
   
 
@@ -227,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      44 分钟
+      47 分钟
     </span>
   
 
@@ -329,7 +329,7 @@
 <p>用上一点点LaTeX3的cs函数和xparse的s指定（用来处理带*命令），我们便得到了下面的代码：</p>
 <p>（有一个重要的知识：<code>\chapter[]&#123;&#125;</code>与<code>\chapter*&#123;&#125;</code>，也就是带<code>*</code>命令没有可选参数，虽然源代码是定义了两个命令分别控制，但是为了帮助记忆和理解，就相当于这里的<code>*</code>作为了<code>\chapter</code>的可选参数已经被“吃掉了”，就只剩下必选参数）</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-keyword">\cs_set_eq:NN</span> <span class="hljs-keyword">\chapter</span>:nn <span class="hljs-keyword">\chapter</span>    <span class="hljs-comment">% 相当于我们之前的把\chapter复制给\ch@pter一样</span><br><span class="hljs-keyword">\cs_new:Npn</span> <span class="hljs-keyword">\chapter_star:n</span> <span class="hljs-params">#1</span><br>  &#123;<br>    <span class="hljs-keyword">\chapter</span>:nn * &#123;<span class="hljs-params">#1</span>&#125;<br>  &#125;<br><br><span class="hljs-keyword">\RenewDocumentCommand</span>&#123; <span class="hljs-keyword">\chapter</span> &#125;&#123; s O&#123;<span class="hljs-params">#3</span>&#125; m &#125;   <span class="hljs-comment">% 注意#2的默认值是#3，如果为空的话目录和页眉就没有标题了</span><br>  &#123;<br>    <span class="hljs-keyword">\IfBooleanTF</span> &#123;<span class="hljs-params">#1</span>&#125;<br>      &#123; <span class="hljs-keyword">\chapter_star:n</span> &#123;<span class="hljs-params">#3</span>&#125; &#125;<br>      &#123; <span class="hljs-keyword">\chapter</span>:nn [<span class="hljs-params">#2</span>] &#123;<span class="hljs-params">#3</span>&#125; &#125;<br>    <span class="hljs-keyword">\setcounter</span>&#123;enumi&#125;&#123;0&#125;<br>  &#125;<br></code></pre></td></tr></table></figure>
-<p>由上述原理知道，不能直接通过<code>\apptocmd</code>来处理，因为参数部分需要我们“提前喂食”。</p>
+<p>查一下<code>\chapter</code>定义的源码知道，不能直接通过<code>\apptocmd</code>来直接处理<code>\chapter</code>，因为它不是显式定义的，而是对<code>\@chapter</code>和<code>\@schapter</code>命令的包装，所以如果<code>\apptpcmd</code>到<code>\chapter</code>的尾部的话，代码就会挡住“参数的入口”，反而被误当参数而吃掉了。但是<code>\@chapter</code>和<code>\@schapter</code>是显式定义的（也就是我们通常的<code>\newcommand</code>或<code>\def</code>定义的，对于参数怎么处理我都约定好了，apptocmd到这两个命令的话，就是我们所期待的效果，而且不会挡住“入口”，这样的话<code>\chapter</code>接收到的参数就会根据定义来分配给<code>\@chapter</code>或<code>\@schapter</code>命令。</p>
 <p>之所以放在前面是可行的，是因为设置计数器部分的代码并没有“挡住进食口”，所以原来咋样就咋样。</p>
 <div class="note note-warning">
             <p>注意，其实用最初的<code>pretocmd</code>或者<code>\def</code>的方法已经能够实现效果，我之所以要“大费周章”地还要研究把计数器代码放在后面，是因为这本身就是学习的过程，我不是为了完成任务而去处理这段代码，而是希望在写这段代码的过程中也能学到东西，对LaTeX的理解能够更深一点。</p>
