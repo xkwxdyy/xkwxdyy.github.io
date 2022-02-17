@@ -19,7 +19,7 @@
     <meta name="description" content="实现了chapter内的enumerate环境可以连续编号并且enumi计数器在新的chapter会自动清零的效果">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现chapter内多个enumerate环境连续编号并在新chapter重置">
-<meta property="og:url" content="http://example.com/2022/01/14/enumerate-continume-numbering-within-chapter/index.html">
+<meta property="og:url" content="https://xkwxdyy.github.io/2022/01/14/enumerate-continume-numbering-within-chapter/index.html">
 <meta property="og:site_name" content="夏大鱼羊">
 <meta property="og:description" content="实现了chapter内的enumerate环境可以连续编号并且enumi计数器在新的chapter会自动清零的效果">
 <meta property="og:locale" content="zh_CN">
@@ -72,7 +72,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"xkwxdyy.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -179,7 +179,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://xkwxdyy.github.io/atom.xml">
+              <a class="nav-link" href="https://xkwxdyy.github.io/atom.xml">
                 <i class="icon-rss"></i>
                 RSS
               </a>
@@ -321,7 +321,7 @@
           </div>
 <p>加上一点点小细节就变成了下面的代码：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-keyword">\ExplSyntaxOn</span><br><span class="hljs-keyword">\makeatletter</span><br><span class="hljs-comment">% 储存副本代码</span><br><span class="hljs-keyword">\let</span><span class="hljs-keyword">\@enumerate</span><span class="hljs-keyword">\enumerate</span><br><span class="hljs-keyword">\let</span><span class="hljs-keyword">\@endenumerate</span><span class="hljs-keyword">\endenumerate</span><br><span class="hljs-comment">% 重定义enumerate环境</span><br><span class="hljs-keyword">\RenewDocumentEnvironment</span>&#123;enumerate&#125;&#123; O&#123;&#125; !b &#125;<br>  &#123;<br>  	<span class="hljs-comment">% 因为chapter最开始的enumerate环境不需要resume</span><br>  	<span class="hljs-comment">% 所以加一个LaTeX3的简单整数判断bool从句</span><br>    <span class="hljs-keyword">\int_compare:nNnTF</span> &#123; <span class="hljs-keyword">\theenumi</span> &#125; = &#123;0&#125;<br>      &#123; <span class="hljs-keyword">\@enumerate</span>[<span class="hljs-params">#1</span>] &#125;<br>      &#123; <span class="hljs-keyword">\@enumerate</span>[resume*, <span class="hljs-params">#1</span>] &#125;<br>      <span class="hljs-params">#2</span><br>  &#125;<br>  &#123;<br>    <span class="hljs-keyword">\@endenumerate</span><br>  &#125;<br><span class="hljs-keyword">\makeatother</span><br><span class="hljs-keyword">\ExplSyntaxOff</span><br></code></pre></td></tr></table></figure>
-<p>PS：<code>xparse</code>宏包的使用我在我的<a target="_blank" rel="noopener" href="https://xkwxdyy.github.io/2022/01/08/LaTeX3-learning/">LaTeX3个人学习经验</a>文章里也有呼吁大家去读文档学习，是我在见到<code>hlist</code>环境、TikZ、LaTeX3 后震惊的第四种代码（不经想到作者都是什么神仙怪物，怎么会发明出这么牛的命令）非常推荐大家学习</p>
+<p>PS：<code>xparse</code>宏包的使用我在我的<a href="https://xkwxdyy.github.io/2022/01/08/LaTeX3-learning/">LaTeX3个人学习经验</a>文章里也有呼吁大家去读文档学习，是我在见到<code>hlist</code>环境、TikZ、LaTeX3 后震惊的第四种代码（不经想到作者都是什么神仙怪物，怎么会发明出这么牛的命令）非常推荐大家学习</p>
 <p>功能1其实就已解决了，可以直接使用<code>enumerate</code>环境也获得<code>resume*</code>的效果而不用手动添加</p>
 <h3 id="功能2的实现">功能2的实现</h3>
 <p>代码其实很简单</p>
